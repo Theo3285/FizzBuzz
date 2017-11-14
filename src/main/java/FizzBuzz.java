@@ -7,28 +7,24 @@ import java.util.List;
 public class FizzBuzz {
 
     public List<String> replaceWithFizzBuzz(List<String> digits) {
+
         List<String> result = new ArrayList<String>();
+
+        Rule fizzRule = new FizzRule();
+        Rule buzzRule = new BuzzRule();
+        Rule fooRule = new FooRule();
+
+        fizzRule.setSuccessor(buzzRule);
+        buzzRule.setSuccessor(fooRule);
+
         int digit;
+
         for (int i = 0 ; i < digits.size() ; i++) {
             digit = getInt(digits.get(i));
-            if (isFizz(digit)) {
-                result.add("fizz");
-            } else if (isBuzz(digit)) {
-                result.add("buzz");
-            } else {
-                digit = i + 1;
-                result.add(String.valueOf(digit));
-            }
+            result.add(fizzRule.execute(digit));
         }
         return result;
-    }
 
-    private boolean isFizz(int digit) {
-        return digit % 3 == 0;
-    }
-
-    private boolean isBuzz(int digit) {
-        return digit % 5 == 0;
     }
 
     private int getInt(String digit) {

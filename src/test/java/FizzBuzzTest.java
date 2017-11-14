@@ -20,8 +20,8 @@ public class FizzBuzzTest {
 
     @Test
     public void shouldReplaceDigitsWithFizzBuzz() {
-        List<String> digits = asList("1","2","3","4","5","6","7","8","9","10");
-        List<String> expected = asList("1","2","fizz","4","buzz","fizz","7","8","fizz","buzz");
+        List<String> digits = asList("1","2","3","4","5","6","7","8","9","10","11","12","13","14");
+        List<String> expected = asList("1","2","fizz","4","buzz","fizz","foo","8","fizz","buzz","11","fizz","13","foo");
         assertEquals(expected, fb.replaceWithFizzBuzz(digits));
     }
 }
