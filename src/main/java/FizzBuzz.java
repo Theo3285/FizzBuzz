@@ -6,14 +6,18 @@ import java.util.List;
  */
 public class FizzBuzz {
 
-    public List<String> replaceWithFizzBuzz(List<String> digits) {
+    public List<String> replace(List<String> digits) {
 
         List<String> result = new ArrayList<String>();
 
         Rule fizzRule = new FizzRule();
         Rule buzzRule = new BuzzRule();
+        Rule fizzBuzzRule = new FizzBuzzRule();
         Rule fooRule = new FooRule();
 
+        // Chain of responsibility
+        // Easy to add new rules but has to be properly ordered. Doesn't smell good. Yuk!
+        fizzBuzzRule.setSuccessor(fizzRule);
         fizzRule.setSuccessor(buzzRule);
         buzzRule.setSuccessor(fooRule);
 
@@ -21,7 +25,7 @@ public class FizzBuzz {
 
         for (int i = 0 ; i < digits.size() ; i++) {
             digit = getInt(digits.get(i));
-            result.add(fizzRule.execute(digit));
+            result.add(fizzBuzzRule.execute(digit));
         }
         return result;
 
